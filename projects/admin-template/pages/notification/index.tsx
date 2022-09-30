@@ -1,15 +1,19 @@
 import React from "react";
 import Layout from "../../components/template/Layout/Layout";
+import { useAppData } from "../../hooks/useAppData/useAppData";
+import IContext from "../../interfaces/Context/Context";
 
-type Props = {};
+const Notification = () => {
+  const { theme, setTheme }: IContext = useAppData();
 
-const Notification = (props: Props) => {
   return (
     <Layout
       title="Notificações"
       subTitle="Aqui voce ira gerenciar as suas notificações"
     >
-      <h3>content</h3>
+      <button onClick={() => setTheme(theme === "" ? "dark" : "")}>
+        alterar
+      </button>
     </Layout>
   );
 };

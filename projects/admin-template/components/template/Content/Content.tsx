@@ -2,9 +2,16 @@ import React from "react";
 import ContentProps from "../../../interfaces/ContentProps/ContentProps";
 
 const Content = (props: ContentProps) => {
-  return <div className={`
+  return (
+    <div
+      className={`
     flex flex-col mt-7 
-  `}>{props.children}</div>;
+    dark:text-gray-200
+  `}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default Content;

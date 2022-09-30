@@ -1,16 +1,14 @@
 import React from "react";
+import { useAppData } from "../../../hooks/useAppData/useAppData";
 import LayoutProps from "../../../interfaces/LayoutProps/LayoutProps";
 import Content from "../Content/Content";
 import Header from "../Header/Header";
 import SideBarMenu from "../SideBar/SideBarMenu";
 
 const Layout = (props: LayoutProps) => {
+  const { theme } = useAppData();
   return (
-    <div
-      className={`
-       flex h-screen w-screen
-    `}
-    >
+    <div className={`${theme} flex h-screen w-screen`}>
       <SideBarMenu />
       <div
         className={`

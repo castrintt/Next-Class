@@ -24,7 +24,7 @@ const SideBarMenu = () => {
         <MenuItem
           text="Sair"
           onClick={() => console.log("LogOut")}
-          className={`text-red-600 hover:bg-red-400 hover:text-white`}
+          className={`text-red-600 hover:bg-red-400 hover:text-white dark:text-red-100 dark:hover:text-white`}
         >
           <LogOut />
         </MenuItem>
