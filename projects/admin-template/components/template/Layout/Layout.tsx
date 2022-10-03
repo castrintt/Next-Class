@@ -5,6 +5,7 @@ import Content from "../Content/Content";
 import Header from "../Header/Header";
 import SideBarMenu from "../SideBar/SideBarMenu";
 
+
 const Layout = (props: LayoutProps) => {
   const { theme } = useAppData();
   return (
