@@ -42,7 +42,7 @@ const AuthInput = ({
 
   return (
     <React.Fragment>
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
         <label>Email</label>
         <input
           type="email"
@@ -52,9 +52,10 @@ const AuthInput = ({
             authInputVerification(e);
           }}
           required={requirement.email}
+          className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
         />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
         <label>Senha</label>
         <input
           type="password"
@@ -64,11 +65,12 @@ const AuthInput = ({
             authInputVerification(e);
           }}
           required={requirement.password}
+          className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
         />
       </div>
       {viewMode === "register" && (
-        <div className="flex flex-col">
-          <label>Senha</label>
+        <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
+          <label>Confirme a senha</label>
           <input
             type="password"
             value={authProperties.confirmPassword}
@@ -77,6 +79,7 @@ const AuthInput = ({
               authInputVerification(e);
             }}
             required={requirement.confirmPassword}
+            className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
           />
         </div>
       )}
