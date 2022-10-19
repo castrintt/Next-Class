@@ -4,5 +4,5 @@ export default interface IUser {
   name: string | null;
   token: string | null;
   provider: string | undefined;
-  imageUrl: string | null;
+  imageUrl: string;
 }

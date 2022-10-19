@@ -5,6 +5,7 @@ import IAuthContextProps from "../interfaces/AuthContextProps/AuthContextProps";
 import { ReactNode } from "react";
 import IUser from "../interfaces/User/User";
 import route from "next/router";
+import Cookies from "js-cookie";
 
 const CONTEXT: IAuthContextProps = {
   user: { uid: "", email: "", name: "", token: "", provider: "", imageUrl: "" },
@@ -27,8 +28,18 @@ const normalizedUser = async (fireBaseUser: firebase.User): Promise<IUser> => {
     name: fireBaseUser.displayName,
     token,
     provider: fireBaseUser.providerData[0]?.providerId,
-    imageUrl: fireBaseUser.photoURL,
+    imageUrl: String(fireBaseUser.photoURL),
   };
+};
+
+const manageCookieInformation = (login: string) => {
+  if (Boolean(login) === true) {
+    Cookies.set("admin-template", login, {
+      expires: 5,
+    });
+  } else {
+    Cookies.remove("admin-template");
+  }
 };
 
 export const AuthContextProvider = ({ children }: IChildrenProps) => {
@@ -40,18 +51,38 @@ export const AuthContextProvider = ({ children }: IChildrenProps) => {
     provider: "",
     imageUrl: "",
   });
-
   const [loading, setLoading] = useState(false);
+
+  const configureUserSection = async (fireBaseUser: firebase.User) => {
+    if (fireBaseUser?.email) {
+      const user = await normalizedUser(fireBaseUser);
+      setUser(user);
+      manageCookieInformation("true");
+      return user.email;
+    } else {
+      setUser({
+        uid: "",
+        email: "",
+        name: "",
+        token: "",
+        provider: "",
+        imageUrl: "",
+      });
+      manageCookieInformation("");
+      return false;
+    }
+  };
 
   const loginGoogle = async () => {
     setLoading(true);
-    console.log("login com google");
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-    setTimeout(() => {
+    const response = await firebase
+      .auth()
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    if (response.user) {
+      configureUserSection(response.user);
       route.push("/");
-    }, 6000);
+      setLoading(false);
+    }
   };
 
   return (

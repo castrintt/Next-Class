@@ -42,7 +42,7 @@ const AuthInput = ({
 
   return (
     <React.Fragment>
-      <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
+      <form className="flex flex-col mt-4 w-80 mr-auto ml-auto">
         <label>Email</label>
         <input
           type="email"
@@ -54,8 +54,8 @@ const AuthInput = ({
           required={requirement.email}
           className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
         />
-      </div>
-      <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
+      </form>
+      <form className="flex flex-col mt-4 w-80 mr-auto ml-auto">
         <label>Senha</label>
         <input
           type="password"
@@ -67,9 +67,9 @@ const AuthInput = ({
           required={requirement.password}
           className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
         />
-      </div>
+      </form>
       {viewMode === "register" && (
-        <div className="flex flex-col mt-4 w-80 mr-auto ml-auto">
+        <form className="flex flex-col mt-4 w-80 mr-auto ml-auto">
           <label>Confirme a senha</label>
           <input
             type="password"
@@ -81,7 +81,7 @@ const AuthInput = ({
             required={requirement.confirmPassword}
             className="px-4 py-3 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 focus:outline-none focus:bg-white color-black-400"
           />
-        </div>
+        </form>
       )}
     </React.Fragment>
   );
